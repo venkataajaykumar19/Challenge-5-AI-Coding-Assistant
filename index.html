@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TaskFlow — Pair Version</title>
+  <meta name="description" content="A task manager built incrementally with GitHub Copilot as an AI pair programming assistant." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="logo">
+        <div class="logo-mark" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+        <h1>TaskFlow</h1>
+      </div>
+      <span class="pair-badge">🤖 Pair Coded — GitHub Copilot</span>
+    </div>
+  </header>
+
+  <main class="main-container" role="main">
+    <section class="task-input-section" aria-label="Add new task">
+      <div class="input-group">
+        <input
+          type="text"
+          id="task-input"
+          class="task-input"
+          placeholder="What needs to be done?"
+          maxlength="200"
+          aria-label="New task title"
+          autocomplete="off"
+        />
+        <button id="add-btn" class="btn btn-primary" type="button" aria-label="Add task">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+          Add Task
+        </button>
+      </div>
+    </section>
+
+    <section class="task-board">
+      <div class="search-box">
+        <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input
+          type="text"
+          id="search-input"
+          class="search-input"
+          placeholder="Search tasks..."
+          aria-label="Search tasks"
+          autocomplete="off"
+        />
+        <button id="search-clear-btn" class="search-clear-btn" type="button" aria-label="Clear search" hidden>&times;</button>
+      </div>
+
+      <nav class="filter-nav" aria-label="Task filters">
+        <button id="filter-all" class="filter-tab active" data-filter="all" aria-pressed="true" type="button">
+          All <span class="filter-count" id="count-all">0</span>
+        </button>
+        <button id="filter-active" class="filter-tab" data-filter="active" aria-pressed="false" type="button">
+          Active <span class="filter-count" id="count-active">0</span>
+        </button>
+        <button id="filter-completed" class="filter-tab" data-filter="completed" aria-pressed="false" type="button">
+          Completed <span class="filter-count" id="count-completed">0</span>
+        </button>
+      </nav>
+
+      <div class="task-list-wrapper">
+        <ul class="task-list" id="task-list" role="list" aria-label="Tasks">
+          <!-- Populated by app.js -->
+        </ul>
+        <div class="empty-state" id="empty-state" hidden>
+          <div class="empty-icon" aria-hidden="true">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+          </div>
+          <p class="empty-title" id="empty-title">No tasks yet</p>
+          <p class="empty-subtitle" id="empty-subtitle">Add your first task above to get started.</p>
+        </div>
+      </div>
+
+      <footer class="task-footer" aria-label="Task summary">
+        <p class="remaining-count" aria-live="polite">
+          <span id="remaining-num">0</span> <span id="remaining-label">tasks</span> remaining
+        </p>
+        <button id="clear-btn" class="btn-ghost" type="button" disabled>
+          Clear completed
+        </button>
+      </footer>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
